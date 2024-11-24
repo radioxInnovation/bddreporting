@@ -1,0 +1,33 @@
+{
+	"report_tag": null,
+	"report_dir": "reports/{{filename}}/",
+	"report_file_basename": "{{scenario}}",
+	"process_gherkin_doc_string": true,
+	"scenario_header": "## {{scenario}}\n\n",
+	"feature_header": "# {{feature}}\n\n",
+	"export_scenario": false,
+	"halt_execution_on_failure": false,
+	"default_formats": [ "docx", "txt"],
+	"formats": {
+		"docx": {
+			"extra_args": [
+				"--toc"
+			]
+		},
+		"pptx": {
+			"extra_args": [
+				"--toc"
+			]
+		},
+		"html": {
+			"extra_args": []
+		},
+		"md": {
+			"extra_args": []
+		},
+		"txt": {
+			"to": "plain",
+			"extra_args": []
+		}
+	}
+}
