@@ -10,7 +10,7 @@ class Config:
     @classmethod
     def __load_defaults(cls):
         if cls._settings is None:     
-            settings_file_path = os.path.join( cls._base_dir, "settings.json" )
+            settings_file_path = os.path.join( cls._base_dir, "data", "settings.json" )
             if os.path.isfile(settings_file_path):
                 with open(settings_file_path, "r") as file:
                     settings = json.load(file)
@@ -36,7 +36,7 @@ class Config:
     @classmethod
     def __validate( cls ):
         try:
-            schema_file_path = os.path.join( cls._base_dir, "schema.json" )
+            schema_file_path = os.path.join( cls._base_dir, "data", "schema.json" )
 
             # Load settings from JSON file if it exists, otherwise use default settings
             if cls._schema is None and os.path.isfile(schema_file_path):
