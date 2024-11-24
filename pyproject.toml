@@ -1,3 +1,35 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "bddreporting"
+version = "1.0.0"
+description = "A Python package for BDD reporting."
+authors = [
+    { name = "Frank Rettig", email = "mail@radiox-innovation.de" }
+]
+license = { text = "Proprietary" } 
+keywords = ["bdd", "reporting", "testing"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.6"
+
+dependencies = [
+    "pypandoc-binary",
+    "pyyaml",
+    "mako",
+    "jinja2",
+    "jsonschema",
+    "behave",
+]
+
+[tool.setuptools]
+include_package_data = true
+
+[tool.setuptools.package-data]
+"bddreporting" = ["data/*.json"]
+
