@@ -103,8 +103,10 @@ def write_text( text, filename, feature_name, scenario_name, tags):
                     logging.error("Failed to generate report: %s", e)
             else:
                 module_dir = format_data.get( "dir", False )
-                if module_dir and module_dir not in sys.path:
-                    sys.path.append( module_dir ) 
+                if module_dir:
+                    abs_module_dir = os.path.join( feature_file_directory, module_dir )
+                    if os.path.exists(abs_module_dir) and abs_module_dir not in sys.path:            
+                        sys.path.append( abs_module_dir ) 
 
                 import importlib
 
