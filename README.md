@@ -128,7 +128,7 @@ There are three main ways to define log strings in the `@report` decorator:
    - Define the log message directly within the decorator.
    - Example:
      ```python
-     @report('The test stand is turned on.')
+     @report('Log: The test stand is turned on.')
      ```
 
 2. **Docstring-Based Definition**:
