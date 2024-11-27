@@ -1,6 +1,6 @@
 # **`bddreporting` Overview**
 
-`bddreporting` is a Python package designed to enhance Behavior-Driven Development (BDD) with `behave` by providing comprehensive logging and reporting tools. The package simplifies the process of generating detailed, customizable reports for each feature, scenario, and step execution.
+`bddreporting` is a Python package designed to enhance Behavior-Driven Development (BDD) with [`behave`](https://github.com/behave/behave) by providing comprehensive logging and reporting tools. The package simplifies the process of generating detailed, customizable reports for each feature, scenario, and step execution.
 
 ---
 
@@ -172,6 +172,9 @@ There are three main ways to define log strings in the `@report` decorator:
   - `{{date}}`: Inserts the current date.
   
 > **Note**: Unlike Mako templates used in step definitions, Jinja2 templates are used in feature files for security reasons, as they do not allow executable Python code.
+> 
+> **Note**: While feature files use [Jinja2 templates](https://jinja.palletsprojects.com/), step definitions leverage [Mako templates](https://www.makotemplates.org/) for enhanced functionality.
+
 
 ### **Example Feature File**
 
@@ -283,6 +286,46 @@ The `formats` configuration allows customization for various output formats. The
 
 ---
 
+# Custom Formats
+
+In cases where conversion is not possible via [Pandoc](https://pandoc.org/), a custom converter can be implemented. Below is an example of a configuration for a custom format:
+
+```json
+{
+    "formats": {
+        "log": {
+            "module": "custom_log",
+            "dir": "formats"
+        }
+    }
+}
+```
+
+- **`module`**: The name of the module that implements the custom converter (e.g., `custom_log`).
+- **`dir`**: The directory where the module (e.g., `custom_log.py`) must be located.
+
+The module must define a `convert` function using the following template:
+
+```python
+def convert(text, outputfile, **kwargs):
+    """
+    Convert the input text into a custom log file format and write it to the output file.
+
+    Args:
+        text (str): The input text to be converted.
+        outputfile (str): The path to the output file.
+        kwargs: Additional keyword arguments for customization.
+
+    Returns:
+        None
+    """
+    # Example implementation of custom log file conversion
+    with open(outputfile, "w", encoding="utf-8") as file:
+        file.write(text)
+```
+
+This template ensures that the custom conversion logic is flexible and adaptable to various requirements.
+
 ## **Format Selection via Tags**
 
 The desired output format can be selected directly within the Gherkin feature file using tags. Each feature or scenario can include one or more format-specific tags (e.g., `@docx`, `@pptx`), which determine the export formats.
@@ -317,4 +360,5 @@ This robust configuration setup empowers teams to tailor `bddreporting` to meet 
 
 ## **Conclusion**
 
-`bddreporting` bridges the gap between BDD practices and detailed reporting. By integrating seamlessly with `behave`, it provides a robust toolset for generating structured, customizable logs and templates for enhanced test reporting.
+`bddreporting` bridges the gap between BDD practices and detailed reporting. By integrating seamlessly with [`behave`](https://github.com/behave/behave), it provides a robust toolset for generating structured, customizable logs and templates for enhanced test reporting. Its use of [Pandoc](https://pandoc.org/) for format conversion ensures compatibility with a wide range of formats, and the integration of [Mako templates](https://www.makotemplates.org/) and Jinja2 templates offers powerful customization options.
+
