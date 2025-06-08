@@ -31,11 +31,11 @@ def report(template = None, filename = None):
 def doc_string_to_log(context, func,  args, kwargs, template, filename):
     text = ""
     scenario = context.scenario
+    current_date, current_time = get_current_date_time()
 
     if Config.get("process_gherkin_doc_string", True) and hasattr(context, 'text') and isinstance(context.text, str) and context.text:
         # use Jinja2 template
         try:
-            current_date, current_time = get_current_date_time()
             rendered_content = applyJinja2Template(context.text, { "scenario": scenario.name , "feature": scenario.feature.name, "date": current_date, "time": current_time } )            
             logging.info(f"Template rendered successfully.")
             text += rendered_content + "\n" * 2
@@ -72,7 +72,7 @@ def doc_string_to_log(context, func,  args, kwargs, template, filename):
         if "id" in kwargs.keys():
             id_parameter = kwargs["id"] 
             logging.warning("step contains id parameter {id_parameter}. This conficts with auto generated step id: {context.current_step_id}")
-        render_args = { "id": context.current_step_id } | kwargs
+        render_args = { "id": context.current_step_id, "date": current_date, "time": current_time } | kwargs
         if hasattr(context, "report") and isinstance(context.report, dict) and context.report:
             render_args = render_args | {"report": context.report }
         rendered_content = template.render(**render_args)

@@ -1,4 +1,5 @@
 import jsonschema
+import sys
 from jsonschema import validate as validate_json
 
 class Config:
