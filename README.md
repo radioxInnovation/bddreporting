@@ -104,7 +104,7 @@ from behave import step
 def step_turn_on(context):
     pass
 
-@when('the test is executed with "{frequency} Hz, amplitude {amplitude} mm, and duration {duration} seconds"')
+@when('the test is executed with "{frequency} Hz, amplitude "{amplitude}" mm, and duration "{duration}" seconds')
 @report()
 def step_execute_test(context, frequency, amplitude, duration):
     """
