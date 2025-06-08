@@ -10,7 +10,7 @@ class Config:
         "process_gherkin_doc_string": True,
         "scenario_header": "## {{scenario}}\n\n",
         "feature_header": "# {{feature}}\n\n",
-        "export_scenario": False,
+        "export_scenario": True,
         "halt_execution_on_failure": False,
         "default_formats": [ "docx", "txt"],
         "formats": {
