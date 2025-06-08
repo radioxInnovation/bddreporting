@@ -6,11 +6,11 @@ class Config:
     _settings = {
         "report_tag": None,
         "report_dir": "reports/{{filename}}/",
-        "report_file_basename": "{{scenario}}",
+        "report_file_basename": "{{feature}}",
         "process_gherkin_doc_string": True,
         "scenario_header": "## {{scenario}}\n\n",
         "feature_header": "# {{feature}}\n\n",
-        "export_scenario": True,
+        "export_scenario": False,
         "halt_execution_on_failure": False,
         "default_formats": [ "docx", "txt"],
         "formats": {
